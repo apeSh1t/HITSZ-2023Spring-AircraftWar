@@ -1,0 +1,36 @@
+@startuml
+
+interface DataDao{
+    + {abstract} getAllDatas(): List<GameData>
+    + {abstract} doAdd(GameData data): void
+    + {abstract} doAdd(int index): void
+    + {abstract} writeToFile(): void
+    + {abstract} readFromFile(): void
+}
+
+class GameData{
+    - username:String
+    - score:int
+    - date:Date
+    + GameData(String username, int score, Date date)
+    + getScore(): int
+    + getUsername(): String
+    + getDate(): Date
+    + setUsername(String username): void
+    + setScore(int score): void
+    + setDate(Date date): void
+}
+
+class DataDaoImpl{
+    - datas: List<GameData>
+    + DataDaoImpl()
+    + getAllDatas(): List<GameData>
+    + doAdd(GameData): void
+    + writeToFile(): void
+    + readFromFile(): void
+}
+
+DataDaoImpl --> GameData
+DataDao <|.. DataDaoImpl
+
+@enduml

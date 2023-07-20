@@ -1,0 +1,43 @@
+@startuml
+
+abstract class Game{
+       + {abstract} createBossAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + {abstract} increaseEnemyMaximum(int enemyMaxNumber): int
+       + {abstract} increaseEliteRate(double eliteEnemyRate): double
+       + {abstract} createEliteAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + {abstract} createMobAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound):  List<AbstractAircraft>
+       + {abstract} decreaseDuration(int cycleDuration): int
+       + action(): void
+}
+
+class EasyGame{
+       + createBossAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + increaseEnemyMaximum(int enemyMaxNumber): int
+       + increaseEliteRate(double eliteEnemyRate): double
+       + createEliteAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + createMobAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound):  List<AbstractAircraft>
+       + decreaseDuration(int cycleDuration): int
+}
+
+class NormalGame{
+       + createBossAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + increaseEnemyMaximum(int enemyMaxNumber): int
+       + increaseEliteRate(double eliteEnemyRate): double
+       + createEliteAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + createMobAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound):  List<AbstractAircraft>
+       + decreaseDuration(int cycleDuration): int
+}
+
+class HardGame{
+       + createBossAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + increaseEnemyMaximum(int enemyMaxNumber): int
+       + increaseEliteRate(double eliteEnemyRate): double
+       + createEliteAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound): List<AbstractAircraft>
+       + createMobAircraft(List<AbstractAircraft> enemyAircrafts, int playingRound):  List<AbstractAircraft>
+       + decreaseDuration(int cycleDuration): int
+}
+
+Game <|-- EasyGame
+Game <|-- NormalGame
+Game <|-- HardGame
+@enduml

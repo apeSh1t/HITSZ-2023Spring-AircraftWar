@@ -1,0 +1,60 @@
+@startuml
+abstract class Game
+
+class BombProp{
+    - bombSubscribersList: List<BombSubscriber>
+    + BombProp(int locationX, int locationY, int speedX, int speedY, int category)
+    + addSubscriber(BombSubscriber bombSubscriber): void
+    + removeSubscriber(BombSubscriber bombSubscriber): void
+    + notifyAllSubscribers(int score): int
+}
+
+interface BombSubscriber{
+    +{abstract} update(int score): int
+}
+
+class MobEnemy {
+    + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + drop(): List<AbstractProp>
+    + update(int score): int
+}
+
+class EnemyBullet {
+    + EnemyBullet(int locationX, int locationY,
+     int speedX, int speedY, int power)
+     + update(int score): int
+}
+
+class EliteEnemy{
+    - shootNum:int
+    - power:int
+    - direction:int
+    + EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + drop():AbstractProp
+    + update(int score): int
+}
+AbstractAircraft <|-- EliteEnemy
+
+class BossEnemy{
+    - shootNum:int
+    - power:int
+    - direction:int
+    + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
+    + shoot():List<BaseBullet>
+    + drop():AbstractProp
+    + update(int score): int
+}
+
+Game ..> BombProp
+BombProp o--> BombSubscriber
+BombSubscriber <|.. EnemyBullet
+BombSubscriber <|.. MobEnemy
+BombSubscriber <|.. EliteEnemy
+BombSubscriber <|.. BossEnemy
+
+
+@enduml

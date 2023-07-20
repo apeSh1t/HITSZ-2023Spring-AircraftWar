@@ -1,0 +1,88 @@
+@startuml
+
+
+interface PropsFactory
+{
+    + CreateProp(int locationX, int locationY, int speedX, int speedY, int category): AbstractProp
+}
+
+class BloodPropFactory
+{
+    + CreateProp(int locationX, int locationY, int speedX, int speedY, int category): AbstractProp
+}
+
+class BombPropFactory
+{
+    + CreateProp(int locationX, int locationY, int speedX, int speedY, int category): AbstractProp
+}
+
+class BulletPropFactory
+{
+    + CreateProp(int locationX, int locationY, int speedX, int speedY, int category): AbstractProp
+}
+
+PropsFactory <|.. BloodPropFactory
+PropsFactory <|.. BombPropFactory
+PropsFactory <|.. BulletPropFactory
+
+PropsFactory ..> AbstractProp
+BloodPropFactory ..> BloodProp
+BombPropFactory ..> BombProp
+BulletPropFactory ..> BulletProp
+
+
+abstract class AbstractFlyingObject
+{
+    # locationX:int
+    # locationY:int
+    # speedX:int
+    # speedY:int
+    # image:BufferedImage
+    # width:int
+    # height:int
+    # isValid:boolean
+
+    + AbstractFlyingObject(int locationX, int locationY, int speedX, int speedY)
+    + forward():void
+    + crash(AbstractFlyingObject flyingObject):boolean
+    + setLocation(double locationX, double locationY):void
+    + getLocationX():int
+    + getLocationY():int
+    + getSpeedY():int
+    + getImage():BufferedImage
+    + getWidth():int
+    + getHeight():int
+    + notValid():boolean
+    + vanish():void
+    + update(int score): int
+}
+
+
+abstract class AbstractProp{
+    - category:int
+    - increase:int
+    + AbstractProp(int locationX, int locationY, int speedX, int speedY, int category)
+    + getCategory():int
+    + getIncrease():int
+    + forward():void
+}
+
+class BloodProp{
+    + BloodProp(int locationX, int locationY, int speedX, int speedY, int category)
+}
+
+class BombProp{
+    + BombProp(int locationX, int locationY, int speedX, int speedY, int category)
+}
+
+class BulletProp{
+    + BulletProp(int locationX, int locationY, int speedX, int speedY, int category)
+}
+
+AbstractProp <|-- BloodProp
+AbstractProp <|-- BombProp
+AbstractProp <|-- BulletProp
+
+AbstractFlyingObject <|-- AbstractProp
+
+@enduml

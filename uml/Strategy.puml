@@ -1,0 +1,34 @@
+@startuml
+
+abstract class AbstractAircraft
+{
+	# maxHp:int
+    # hp:int
+    - strategy: Strategy
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + decreaseHp(int decrease):void
+    + getHp():int
+    + executeStrategy(int LocationX, int LocationY, int SpeedX, int SpeedY, int direction, int power, int faction): List<BaseBullet>
+    + setStrategy(Strategy strategy): void
+    + {abstract} shoot():List<BaseBullet>
+    + {abstract} drop():AbstractProp
+ }
+
+interface Strategy{
+    + shootOperation():List<BaseBullet>
+}
+AbstractAircraft o--> Strategy
+
+class OperationScatterShoot{
+    + shootOperation():List<BaseBullet>
+}
+
+class OperationSingleShoot{
+    + shootOperation():List<BaseBullet>
+}
+
+
+Strategy <|.. OperationScatterShoot
+Strategy <|.. OperationSingleShoot
+
+@enduml

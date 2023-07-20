@@ -1,0 +1,16 @@
+@startuml
+
+class HeroAircraft {
+    - shootNum:int
+    - power:int
+    - direction:int
+    + HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + drop():AbstractProp
+    + getSingleton(int locationX, int locationY, int speedX, int speedY, int hp):HeroAircraft
+}
+
+HeroAircraft <|-- HeroAircraft
+
+@enduml
